@@ -1,5 +1,6 @@
 import React from 'react';
 import Installment from './Installment';
+import css from './installment.module.css';
 
 export default function Installments(props) {
   //prettier-ignore
@@ -10,9 +11,9 @@ export default function Installments(props) {
   }
 
   return (
-    <div className="container">
-      <ul style={styles.installmentList}>
-        {totalInstallments.map((installment, index) => {
+    <div>
+      <ul className={css.flexRow}>
+        {totalInstallments.map((_, index) => {
           return (
             <Installment
               key={index + 1}
@@ -26,14 +27,3 @@ export default function Installments(props) {
     </div>
   );
 }
-
-const styles = {
-  installmentList: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '30px',
-  },
-};

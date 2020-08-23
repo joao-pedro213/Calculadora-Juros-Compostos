@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './installment.module.css';
 
 export default function Installment(props) {
   const { reference, initialCapitalValue, compoundInterestValue } = props;
@@ -17,36 +18,38 @@ export default function Installment(props) {
   // prettier-ignore
   const amount = calculateCompoundInterest(initialCapitalValue, reference, compoundInterestValue);
   const isNegative = Math.sign(amount) === -1 ? true : false;
+  const borderClass = !isNegative ? css.incomeBorder : css.depreciationBorder;
 
   return (
-    <div style={styles.border}>
-      <p>
-        <span>Parcela: </span>
+    <div className={[css.flexColumn, borderClass].join(' ')}>
+      <p className={css.defaultText}>
+        <span className={css.defaultSpan}>Parcela: </span>
         <strong>{reference}</strong>
       </p>
-      <p>
-        <span>Total: </span>
+
+      <p className={css.defaultText}>
+        <span className={!isNegative ? css.income : css.depreciation}>
+          Total:{' '}
+        </span>
         {(parseInt(initialCapitalValue) + amount).toFixed(2)}
       </p>
-      <p>
-        <span>{!isNegative ? 'Rendimento: ' : 'Depreciação: '}</span>
 
+      <p className={css.defaultText}>
+        <span className={!isNegative ? css.income : css.depreciation}>
+          {!isNegative ? 'Rendimento: ' : 'Depreciação: '}
+        </span>
         {!isNegative
           ? `R$ ${amount.toFixed(2)}`
           : `-R$ ${Math.abs(amount).toFixed(2)}`}
       </p>
-      <p>
+
+      <p
+        className={
+          !isNegative ? css.incomePercentage : css.depreciationPercentage
+        }
+      >
         {`${calculatePercentageFrom(initialCapitalValue, amount).toFixed(2)}%`}
       </p>
     </div>
   );
 }
-
-const styles = {
-  border: {
-    border: 'solid 1px lightgrey',
-    borderRadius: '5px',
-    padding: '10px',
-    margin: '20px',
-  },
-};
