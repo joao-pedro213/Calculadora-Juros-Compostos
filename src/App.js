@@ -1,5 +1,10 @@
 import React from 'react';
+import Header from './components/Header/Header';
 
 export default function App() {
-  return <h1>React Juros Compostos</h1>;
+  return (
+    <div className="container center">
+      <Header />
+    </div>
+  );
 }
