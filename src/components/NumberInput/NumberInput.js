@@ -17,6 +17,7 @@ export default function NumberInput(props) {
         type="number"
         value={value}
         onChange={handleInputChange}
+        min={idReference !== 'compoundInterest' ? 0 : null}
       />
       <label className="active" htmlFor={idReference}>
         {labelName}
