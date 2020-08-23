@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import NumberInput from './components/NumberInput/NumberInput';
+import Installments from './components/Installments/Installments';
 
 export default function App() {
   const [initialCapital, setInitialCapital] = React.useState(0);
-  const [compountInterest, setCompoundInterest] = React.useState(0);
+  const [compoundInterest, setCompoundInterest] = React.useState(0);
   const [installment, setInstallment] = React.useState(0);
 
   const handleInitialCapitalInput = (newInitialCapital) => {
@@ -30,7 +31,7 @@ export default function App() {
         <NumberInput
           idReference="compoundInterest"
           labelName="Juros Compostos:"
-          value={compountInterest}
+          value={compoundInterest}
           onInputChange={handleCompundInterestInput}
         />
         <NumberInput
@@ -38,6 +39,14 @@ export default function App() {
           labelName="Parcelas:"
           value={installment}
           onInputChange={handleInstallmentInput}
+        />
+      </div>
+
+      <div style={styles.inputRow}>
+        <Installments
+          numberOfInstallments={installment}
+          initialCapitalValue={initialCapital}
+          compoundInterestValue={compoundInterest}
         />
       </div>
     </div>
